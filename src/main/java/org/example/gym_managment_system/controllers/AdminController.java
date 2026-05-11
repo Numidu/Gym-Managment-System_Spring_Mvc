@@ -45,7 +45,7 @@ public class AdminController {
                     imageFile.getOriginalFilename();
 
             String uploadDir =
-                    "C:/uploads/";
+                    "D:/uploads/";
 
             File saveFile =
                     new File(uploadDir + fileName);

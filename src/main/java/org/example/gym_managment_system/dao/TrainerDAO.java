@@ -30,6 +30,7 @@ public class TrainerDAO {
             ps.setInt(4, trainer.getExperience());
 
             ps.executeUpdate();
+            System.out.println("Trainer saved Successfully");
 
         } catch (Exception e) {
 
@@ -62,6 +63,7 @@ public class TrainerDAO {
                 t.setExperience(rs.getInt("experience"));
 
                 trainers.add(t);
+                System.out.println("Trainer found Successfully");
             }
 
         } catch (Exception e) {
@@ -150,6 +152,7 @@ public class TrainerDAO {
             ps.setInt(5, trainer.getId());
 
             ps.executeUpdate();
+            System.out.println("Trainer updated Successfully");
 
         } catch (Exception e) {
 

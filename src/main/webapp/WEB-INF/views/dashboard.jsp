@@ -247,7 +247,7 @@
 
         <div class="profile">
 
-            <img src="https://i.pravatar.cc/150?img=12">
+            <img src="${pageContext.request.contextPath}/uploads/${loggedUser.image}">
 
             <div>
                 <h3>Admin</h3>

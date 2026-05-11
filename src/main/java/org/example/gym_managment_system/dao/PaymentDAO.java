@@ -36,6 +36,7 @@ public class PaymentDAO {
                 p.setMemberName(rs.getString("mname"));
 
                 payments.add(p);
+                System.out.println("payments getall Successfully");
             }
 
         } catch (SQLException e) {
@@ -70,6 +71,7 @@ public class PaymentDAO {
             );
 
             ps.executeUpdate();
+            System.out.println("Payment Inserted Successfully");
 
         } catch (SQLException e) {
 
@@ -92,6 +94,7 @@ public class PaymentDAO {
             ps.setInt(1, id);
 
             ps.executeUpdate();
+            System.out.println("Payment Deleted Successfully");
 
         } catch (SQLException e) {
 
@@ -124,7 +127,7 @@ public class PaymentDAO {
                 p.setAmount(rs.getDouble("amount"));
                 p.setPaymentDate(rs.getDate("payment_date"));
             }
-
+            System.out.println("Payment Found Successfully");
             return p;
 
         } catch (SQLException e) {
@@ -159,6 +162,7 @@ public class PaymentDAO {
             ps.setInt(4, p.getId());
 
             ps.executeUpdate();
+            System.out.println("Payment Updated Successfully");
 
         } catch (SQLException e) {
 

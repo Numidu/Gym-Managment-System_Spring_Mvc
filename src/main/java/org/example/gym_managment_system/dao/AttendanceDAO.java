@@ -18,10 +18,7 @@ public class AttendanceDAO {
 
             Connection con = DBConnection.getConnection();
 
-            String sql =
-                    "INSERT INTO attendance " +
-                            "(member_id, check_in) " +
-                            "VALUES (?, ?)";
+            String sql = "INSERT INTO attendance (member_id, check_in) VALUES (?, ?)";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -36,6 +33,7 @@ public class AttendanceDAO {
             );
 
             ps.executeUpdate();
+            System.out.println("Attendance Saved Successfully");
 
         } catch (SQLException e) {
 
@@ -52,11 +50,7 @@ public class AttendanceDAO {
 
             Connection con = DBConnection.getConnection();
 
-            String sql =
-                    "SELECT a.*, m.memberName AS mname " +
-                            "FROM attendance a " +
-                            "JOIN member m " +
-                            "ON m.id = a.member_id";
+            String sql = "SELECT a.*, m.memberName AS mname FROM attendance a JOIN member m ON m.id = a.member_id";
 
             PreparedStatement ps =
                     con.prepareStatement(sql);
@@ -74,6 +68,7 @@ public class AttendanceDAO {
                 a.setMemberName(rs.getString("mname"));
 
                 attendanceList.add(a);
+                System.out.println("Attendance Saved Successfully");
             }
 
         } catch (SQLException e) {
@@ -99,6 +94,7 @@ public class AttendanceDAO {
             ps.setInt(1, id);
 
             ps.executeUpdate();
+            System.out.println("Attendance Deleted Successfully");
 
         } catch (SQLException e) {
 
@@ -122,8 +118,7 @@ public class AttendanceDAO {
 
             ResultSet rs = ps.executeQuery();
 
-            Attendance a =
-                    new Attendance();
+            Attendance a = new Attendance();
 
             while(rs.next()){
 
@@ -132,7 +127,9 @@ public class AttendanceDAO {
                 a.setCheckIn(rs.getDate("check_in"));
             }
 
+            System.out.println("Attendance findById Successfully");
             return a;
+
 
         } catch (SQLException e) {
 
@@ -146,27 +143,20 @@ public class AttendanceDAO {
 
             Connection con = DBConnection.getConnection();
 
-            String sql =
-                    "UPDATE attendance SET " +
-                            "member_id=?," +
-                            "check_in=? " +
-                            "WHERE id=?";
+            String sql = "UPDATE attendance SET " + "member_id=?," + "check_in=? " + "WHERE id=?";
 
-            PreparedStatement ps =
-                    con.prepareStatement(sql);
+            PreparedStatement ps = con.prepareStatement(sql);
 
             ps.setInt(1, a.getMemberId());
 
-            ps.setDate(
-                    2,
-                    new java.sql.Date(
-                            a.getCheckIn().getTime()
+            ps.setDate(2, new java.sql.Date(a.getCheckIn().getTime()
                     )
             );
 
             ps.setInt(3, a.getId());
 
             ps.executeUpdate();
+            System.out.println("Attendance Updated Successfully");
 
         } catch (SQLException e) {
 

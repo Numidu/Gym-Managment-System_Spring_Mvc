@@ -167,10 +167,7 @@
 
             <label>Email</label>
 
-            <input type="email"
-                   name="email"
-                   placeholder="Enter your email"
-                   required>
+            <input type="email" name="email" placeholder="Enter your email" required>
 
         </div>
 
@@ -178,10 +175,7 @@
 
             <label>Password</label>
 
-            <input type="password"
-                   name="password"
-                   placeholder="Enter your password"
-                   required>
+            <input type="password" name="password" placeholder="Enter your password" required>
 
         </div>
 

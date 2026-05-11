@@ -331,7 +331,7 @@
 
                     <td>${a.contactno}</td>
                     <td>
-                        <img src="uploads/${a.image}"
+                        <img src="${pageContext.request.contextPath}/uploads/${a.image}"
                              width="60"
                              height="60"
                              style="border-radius:50%; object-fit:cover;">
