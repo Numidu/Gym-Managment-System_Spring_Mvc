@@ -2,6 +2,7 @@ package org.example.gym_managment_system.dao;
 
 import org.example.gym_managment_system.model.Admin;
 import org.example.gym_managment_system.util.DBConnection;
+import org.example.gym_managment_system.util.PasswordUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +23,7 @@ public class AdminDAO {
 
             ps.setString(1, admin.getUsername());
             ps.setString(2, admin.getEmail());
-            ps.setString(3, admin.getPassword());
+            ps.setString(3, PasswordUtil.hashPassword(admin.getPassword()));
             ps.setString(4, admin.getContactno());
             ps.setString(5, admin.getImage());
 
@@ -179,7 +180,7 @@ public class AdminDAO {
         ) {
 
             ps.setString(1, email);
-            ps.setString(2, password);
+            ps.setString(2, PasswordUtil.hashPassword(password));
 
             try (ResultSet rs = ps.executeQuery()) {
 

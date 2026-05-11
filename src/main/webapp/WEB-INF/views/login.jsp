@@ -157,7 +157,7 @@
 
 <div class="login-box">
 
-    <h2>Admin Login</h2>
+    <h2>Admin Login </h2>
 
     <p>Welcome back! Please login to continue.</p>
 

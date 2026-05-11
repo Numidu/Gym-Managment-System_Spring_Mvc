@@ -31,35 +31,98 @@
      /* SIDEBAR */
 
      .sidebar{
-         width:260px;
+         width:270px;
          height:100vh;
-         background:#0f172a;
+         background:linear-gradient(180deg,#0f172a,#1e293b);
          position:fixed;
          left:0;
          top:0;
-         padding:20px;
+         padding:25px 18px;
+         display:flex;
+         flex-direction:column;
+         justify-content:space-between;
+         box-shadow:4px 0 15px rgba(0,0,0,0.15);
      }
 
-     .sidebar h1{
-         color:white;
-         margin-bottom:30px;
+     /* LOGO */
+
+     .logo-section{
          text-align:center;
+         margin-bottom:30px;
      }
 
-     .sidebar a{
-         display:block;
+     .logo-section h1{
+         color:white;
+         font-size:30px;
+         margin-bottom:5px;
+         letter-spacing:1px;
+     }
+
+     .logo-section p{
+         color:#94a3b8;
+         font-size:14px;
+     }
+
+     /* MENU */
+
+     .menu{
+         display:flex;
+         flex-direction:column;
+         gap:12px;
+     }
+
+     .menu a{
+         display:flex;
+         align-items:center;
+         gap:14px;
          color:#e2e8f0;
          text-decoration:none;
-         padding:15px;
-         margin-bottom:10px;
-         border-radius:12px;
+         padding:15px 18px;
+         border-radius:14px;
          transition:0.3s;
          font-size:17px;
+         font-weight:500;
      }
 
-     .sidebar a:hover{
-         background:#1e293b;
-         padding-left:20px;
+     .menu a span{
+         font-size:20px;
+     }
+
+     .menu a:hover{
+         background:#2563eb;
+         transform:translateX(5px);
+         box-shadow:0 5px 12px rgba(37,99,235,0.4);
+     }
+
+     .active{
+         background:#2563eb;
+         box-shadow:0 5px 12px rgba(37,99,235,0.4);
+     }
+
+     /* LOGOUT */
+
+     .logout-section{
+         margin-top:20px;
+     }
+
+     .logout-btn{
+         display:flex;
+         align-items:center;
+         justify-content:center;
+         gap:12px;
+         background:#ef4444;
+         color:white !important;
+         text-decoration:none;
+         padding:15px;
+         border-radius:14px;
+         font-size:17px;
+         font-weight:bold;
+         transition:0.3s;
+     }
+
+     .logout-btn:hover{
+         background:#dc2626;
+         transform:scale(1.03);
      }
 
      /* MAIN CONTENT */
@@ -215,20 +278,53 @@
 
 <div class="sidebar">
 
-    <h1>GYM SYS</h1>
-    <a href="dashboard">Dashboard</a>
+    <div class="logo-section">
+        <h1>GYM SYS</h1>
+        <p>Management Panel</p>
+    </div>
 
-    <a href="#" onclick="loadPage('m_view')">Members</a>
+    <div class="menu">
 
-    <a href="#" onclick="loadPage('t_view')">Trainers</a>
+        <a href="dashboard" class="active">
+            <span>🏠</span>
+            Dashboard
+        </a>
 
-    <a href="#" onclick="loadPage('p_view')">Payments</a>
+        <a href="#" onclick="loadPage('m_view')">
+            <span>💪</span>
+            Members
+        </a>
 
-    <a href="#" onclick="loadPage('at_view')">Attendance</a>
+        <a href="#" onclick="loadPage('t_view')">
+            <span>🏋️</span>
+            Trainers
+        </a>
 
-    <a href="#" onclick="loadPage('a_view')">Admins</a>
+        <a href="#" onclick="loadPage('p_view')">
+            <span>💳</span>
+            Payments
+        </a>
 
-    <a href="logout">Logout</a>
+        <a href="#" onclick="loadPage('at_view')">
+            <span>📅</span>
+            Attendance
+        </a>
+
+        <a href="#" onclick="loadPage('a_view')">
+            <span>👨‍💼</span>
+            Admins
+        </a>
+
+    </div>
+
+    <div class="logout-section">
+
+        <a href="logout" class="logout-btn" onclick="return confirm('Are you sure you want to logout?')">
+            <span>🚪</span>
+            Logout
+        </a>
+
+    </div>
 
 </div>
 
