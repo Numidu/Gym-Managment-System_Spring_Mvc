@@ -1,0 +1,10 @@
+spring:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
