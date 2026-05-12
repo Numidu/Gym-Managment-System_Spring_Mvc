@@ -58,6 +58,7 @@ public class LoginController {
         }
         DashbordDAO dashbordDAO = new DashbordDAO();
         dashbordDAO.getData(model);
+        model.addAttribute("page", "home.jsp");
 
         return "dashboard";
     }

@@ -333,6 +333,25 @@
 
         </table>
 
+        <script>
+
+            const socket = new WebSocket("ws://localhost:8080/gym_managment_system_war/my-raw-ws");
+
+            socket.onopen = function () {
+
+                console.log("Connected");
+            }
+
+            socket.onmessage = function (event) {
+
+                console.log(event.data);
+
+                alert(event.data);
+
+            }
+
+        </script>
+
     </div>
 
 </div>

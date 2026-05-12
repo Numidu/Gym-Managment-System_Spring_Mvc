@@ -23,8 +23,8 @@ public class TrainerController {
                 "et",
                 new Trainer()
         );
-
-        return "trainer";
+        model.addAttribute("page", "trainer.jsp");
+        return "dashboard";
     }
 
     @PostMapping("/saveTrainer")
@@ -66,8 +66,8 @@ public class TrainerController {
                 "trainerList",
                 trainerDAO.getAllTrainers()
         );
-
-        return "trainer";
+        model.addAttribute("page", "trainer.jsp");
+        return "dashboard";
     }
 
     @PostMapping("/updateTrainer")

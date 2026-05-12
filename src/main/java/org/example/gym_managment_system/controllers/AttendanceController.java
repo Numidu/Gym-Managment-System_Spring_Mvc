@@ -1,6 +1,7 @@
 package org.example.gym_managment_system.controllers;
 
 
+import org.example.gym_managment_system.Websocket.TextHandler;
 import org.example.gym_managment_system.dao.AttendanceDAO;
 import org.example.gym_managment_system.dao.MemberDAO;
 import org.example.gym_managment_system.model.Attendance;
@@ -33,16 +34,24 @@ public class AttendanceController {
                 "ea",
                 new Attendance()
         );
-
-        return "attendance";
+        model.addAttribute("page","attendance.jsp");
+        return "dashboard";
     }
 
     @PostMapping("/saveAttendance")
-    public String saveAttendance(
-            Attendance attendance
+    public String saveAttendance(Attendance attendance
     ){
 
         attendanceDAO.saveAttendance(attendance);
+
+        try {
+
+            TextHandler.sendToAll("New Attendance Added");
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
 
         return "redirect:/at_view";
     }
@@ -81,7 +90,9 @@ public class AttendanceController {
                 memberDAO.getAllMembers()
         );
 
-        return "attendance";
+        model.addAttribute("page", "attendance.jsp");
+
+        return "dashboard";
     }
 
     @PostMapping("/updateAttendance")

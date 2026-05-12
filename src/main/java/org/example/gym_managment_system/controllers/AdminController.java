@@ -1,4 +1,5 @@
 package org.example.gym_managment_system.controllers;
+import jakarta.servlet.http.HttpSession;
 import org.example.gym_managment_system.dao.AdminDAO;
 import org.example.gym_managment_system.model.Admin;
 import org.springframework.stereotype.Controller;
@@ -21,12 +22,11 @@ public class AdminController {
                 adminDAO.getAllAdmins()
         );
 
-        model.addAttribute(
-                "ea",
-                new Admin()
+        model.addAttribute("ea", new Admin()
         );
+        model.addAttribute("page", "admin.jsp");
 
-        return "admin";
+        return "dashboard";
     }
 
     @PostMapping("/saveAdmin")
@@ -36,6 +36,8 @@ public class AdminController {
 
             @RequestParam("imageFile")
             MultipartFile imageFile
+
+
 
     ){
 
@@ -74,23 +76,29 @@ public class AdminController {
 
     @GetMapping("/editAdmin")
     public String editAdmin(
-            @RequestParam("id") int id,
-            Model model
-    ){
+            @RequestParam("id") int id, Model model , HttpSession session
+            ){
+        Admin adminData = (Admin) session.getAttribute("loggedUser");
+        System.out.println(adminData.getId());
+        if(adminData.getId() == id){
 
-        Admin admin = adminDAO.findById(id);
+            Admin admin = adminDAO.findById(id);
 
-        model.addAttribute(
-                "ea",
-                admin
-        );
+            model.addAttribute("ea", admin
+            );
 
-        model.addAttribute(
-                "adminList",
-                adminDAO.getAllAdmins()
-        );
+            model.addAttribute("adminList", adminDAO.getAllAdmins()
+            );
+            System.out.println("edit"+id);
+            System.out.println("edit"+admin);
 
-        return "admin";
+            model.addAttribute("page", "admin.jsp");
+            return "dashboard";
+
+        }else{
+            return "redirect:/a_view";
+        }
+
     }
 
     @PostMapping("/updateAdmin")
@@ -98,8 +106,11 @@ public class AdminController {
 
             Admin admin,
 
-            @RequestParam("imageFile")
-            MultipartFile imageFile
+            @RequestParam("imageFile") MultipartFile imageFile,
+
+            @RequestParam("oldImage") String oldImage
+
+
 
     ){
 
@@ -119,6 +130,8 @@ public class AdminController {
                 imageFile.transferTo(saveFile);
 
                 admin.setImage(fileName);
+            }else{
+                admin.setImage(oldImage);
             }
 
         }catch (Exception e){

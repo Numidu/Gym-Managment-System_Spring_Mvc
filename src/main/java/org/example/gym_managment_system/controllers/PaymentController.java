@@ -32,8 +32,8 @@ public class PaymentController {
                 "ep",
                 new Payment()
         );
-
-        return "payment";
+        model.addAttribute("page", "payment.jsp");
+        return "dashboard";
     }
 
     @PostMapping("/savePayment")
@@ -78,7 +78,8 @@ public class PaymentController {
                 memberDAO.getAllMembers()
         );
 
-        return "payment";
+        model.addAttribute("page", "payment.jsp");
+        return "dashboard";
     }
 
     @PostMapping("/updatePayment")

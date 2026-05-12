@@ -1,196 +1,165 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: numidu_d
-  Date: 5/9/2026
-  Time: 11:39 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<style>
 
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:'Poppins',sans-serif;
+    }
 
-<!DOCTYPE html>
-<html>
+    .container{
+        width:100%;
+    }
 
-<head>
+    /* HEADER */
 
-    <title>Admin Management</title>
+    .header{
+        margin-bottom:25px;
+    }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    .header h1{
+        font-size:32px;
+        color:#0f172a;
+        font-weight:700;
+    }
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-          rel="stylesheet">
+    .header p{
+        color:#64748b;
+        margin-top:5px;
+    }
 
-    <style>
+    /* FORM CARD */
 
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Poppins',sans-serif;
-        }
+    .form-card{
+        background:white;
+        padding:30px;
+        border-radius:22px;
+        box-shadow:0 5px 20px rgba(0,0,0,0.08);
+        margin-bottom:30px;
+    }
 
-        body{
-            background:#f1f5f9;
-            padding:30px;
-        }
+    .form-grid{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+        gap:20px;
+    }
 
-        .container{
-            width:100%;
-        }
+    .input-box{
+        display:flex;
+        flex-direction:column;
+    }
 
-        /* HEADER */
+    .input-box label{
+        margin-bottom:8px;
+        color:#334155;
+        font-weight:500;
+    }
 
-        .header{
-            margin-bottom:25px;
-        }
+    .input-box input{
+        padding:14px;
+        border-radius:12px;
+        border:1px solid #cbd5e1;
+        outline:none;
+        transition:0.3s;
+        font-size:14px;
+    }
 
-        .header h1{
-            font-size:32px;
-            color:#0f172a;
-            font-weight:700;
-        }
+    .input-box input:focus{
+        border-color:#38bdf8;
+        box-shadow:0 0 10px rgba(56,189,248,0.3);
+    }
 
-        .header p{
-            color:#64748b;
-            margin-top:5px;
-        }
+    /* BUTTON */
 
-        /* FORM CARD */
+    .btn{
+        margin-top:25px;
+        padding:14px 28px;
+        border:none;
+        border-radius:14px;
+        background:linear-gradient(135deg,#38bdf8,#2563eb);
+        color:white;
+        font-size:15px;
+        font-weight:600;
+        cursor:pointer;
+        transition:0.3s;
+    }
 
-        .form-card{
-            background:white;
-            padding:30px;
-            border-radius:22px;
-            box-shadow:0 5px 20px rgba(0,0,0,0.08);
-            margin-bottom:30px;
-        }
+    .btn:hover{
+        transform:translateY(-3px);
+        box-shadow:0 8px 20px rgba(37,99,235,0.35);
+    }
 
-        .form-grid{
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:20px;
-        }
+    /* TABLE */
 
-        .input-box{
-            display:flex;
-            flex-direction:column;
-        }
+    .table-card{
+        background:white;
+        padding:25px;
+        border-radius:22px;
+        box-shadow:0 5px 20px rgba(0,0,0,0.08);
+        overflow-x:auto;
+    }
 
-        .input-box label{
-            margin-bottom:8px;
-            color:#334155;
-            font-weight:500;
-        }
+    table{
+        width:100%;
+        border-collapse:collapse;
+    }
 
-        .input-box input{
-            padding:14px;
-            border-radius:12px;
-            border:1px solid #cbd5e1;
-            outline:none;
-            transition:0.3s;
-            font-size:14px;
-        }
+    table thead{
+        background:#0f172a;
+        color:white;
+    }
 
-        .input-box input:focus{
-            border-color:#38bdf8;
-            box-shadow:0 0 10px rgba(56,189,248,0.3);
-        }
+    table th{
+        padding:16px;
+        text-align:left;
+        font-size:14px;
+    }
 
-        /* BUTTON */
+    table td{
+        padding:16px;
+        border-bottom:1px solid #e2e8f0;
+        color:#334155;
+        font-size:14px;
+    }
 
-        .btn{
-            margin-top:25px;
-            padding:14px 28px;
-            border:none;
-            border-radius:14px;
-            background:linear-gradient(135deg,#38bdf8,#2563eb);
-            color:white;
-            font-size:15px;
-            font-weight:600;
-            cursor:pointer;
-            transition:0.3s;
-        }
+    table tr:hover{
+        background:#f8fafc;
+    }
 
-        .btn:hover{
-            transform:translateY(-3px);
-            box-shadow:0 8px 20px rgba(37,99,235,0.35);
-        }
+    /* ACTION BUTTONS */
 
-        /* TABLE */
+    .delete-btn{
+        background:#ef4444;
+        color:white;
+        border:none;
+        padding:10px 16px;
+        border-radius:10px;
+        cursor:pointer;
+        transition:0.3s;
+        font-weight:500;
+    }
 
-        .table-card{
-            background:white;
-            padding:25px;
-            border-radius:22px;
-            box-shadow:0 5px 20px rgba(0,0,0,0.08);
-            overflow-x:auto;
-        }
+    .delete-btn:hover{
+        background:#dc2626;
+    }
 
-        table{
-            width:100%;
-            border-collapse:collapse;
-        }
+    .edit-btn{
+        text-decoration:none;
+        background:#22c55e;
+        color:white;
+        padding:10px 18px;
+        border-radius:10px;
+        transition:0.3s;
+        font-weight:500;
+    }
 
-        table thead{
-            background:#0f172a;
-            color:white;
-        }
+    .edit-btn:hover{
+        background:#16a34a;
+    }
 
-        table th{
-            padding:16px;
-            text-align:left;
-            font-size:14px;
-        }
-
-        table td{
-            padding:16px;
-            border-bottom:1px solid #e2e8f0;
-            color:#334155;
-            font-size:14px;
-        }
-
-        table tr:hover{
-            background:#f8fafc;
-        }
-
-        /* ACTION BUTTONS */
-
-        .delete-btn{
-            background:#ef4444;
-            color:white;
-            border:none;
-            padding:10px 16px;
-            border-radius:10px;
-            cursor:pointer;
-            transition:0.3s;
-            font-weight:500;
-        }
-
-        .delete-btn:hover{
-            background:#dc2626;
-        }
-
-        .edit-btn{
-            text-decoration:none;
-            background:#22c55e;
-            color:white;
-            padding:10px 18px;
-            border-radius:10px;
-            transition:0.3s;
-            font-weight:500;
-        }
-
-        .edit-btn:hover{
-            background:#16a34a;
-        }
-
-    </style>
-
-</head>
-
-<body>
+</style>
 
 <div class="container">
 
@@ -210,9 +179,7 @@
 
         <form method="POST"
               enctype="multipart/form-data"
-              action="${ea.id == 0
-              ? 'saveAdmin'
-              : 'updateAdmin'}">
+              action="${ea.id == 0 ? 'saveAdmin' : 'updateAdmin'}">
 
             <input type="hidden"
                    name="id"
@@ -279,19 +246,19 @@
                     <label>Profile Image</label>
 
                     <input type="file"
-                           name="imageFile">
+                           name="imageFile"
+
+                    >
+
+                    <input type="hidden" name="oldImage" value="${ea.image}"/>
 
                 </div>
 
             </div>
 
             <input type="submit"
-
                    class="btn"
-
-                   value="${ea.id == 0
-                   ? 'Save Admin'
-                   : 'Update Admin'}"/>
+                   value="${ea.id == 0 ? 'Save Admin' : 'Update Admin'}"/>
 
         </form>
 
@@ -327,14 +294,17 @@
 
                     <td>${a.email}</td>
 
-                    <td>${a.password}</td>
+                    <td>****</td>
 
                     <td>${a.contactno}</td>
+
                     <td>
+
                         <img src="${pageContext.request.contextPath}/uploads/${a.image}"
                              width="60"
                              height="60"
                              style="border-radius:50%; object-fit:cover;">
+
                     </td>
 
                     <td>
@@ -347,11 +317,8 @@
                                    value="${a.id}">
 
                             <input type="submit"
-
                                    value="Delete"
-
                                    class="delete-btn"
-
                                    onclick="return confirm('Are you sure?')">
 
                         </form>
@@ -381,6 +348,3 @@
 
 </div>
 
-</body>
-
-</html>

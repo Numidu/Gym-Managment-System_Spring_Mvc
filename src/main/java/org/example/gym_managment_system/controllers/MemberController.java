@@ -22,8 +22,8 @@ public class MemberController {
                 "em",
                 new Member()
         );
-
-        return "member";
+        model.addAttribute("page", "member.jsp");
+        return "dashboard";
     }
 
     @PostMapping("/saveMember")
@@ -62,7 +62,9 @@ public class MemberController {
                 "memberList",
                 memberDAO.getAllMembers());
 
-        return "member";
+        model.addAttribute("page", "member.jsp");
+
+        return "dashboard";
     }
 
 
